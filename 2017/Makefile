@@ -1,17 +1,19 @@
 CC = g++
-FLAGS = -std=c++17 -O2 -march=native -Wall -Wextra
+FLAGS = -std=c++17 -O2 -march=native -pedantic -Wall -Wextra
 BUILD_DIR = build
-TARGETS = $(addprefix $(BUILD_DIR)/day_, $(basename $(wildcard *.cpp)))
+TARGETS = $(addprefix $(BUILD_DIR)/, $(basename $(wildcard *.cpp)))
 
-all: build_dir $(TARGETS)
+.PHONY: clean
 
-build_dir:
+all: $(TARGETS)
+
+$(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/day_4_%: 4_%.cpp
-	$(CC) $< -o ./$@ $(FLAGS) -lcrypto
+run_%: $(BUILD_DIR)/%
+	./$(BUILD_DIR)/$* < input/$*.txt
 
-$(BUILD_DIR)/day_%: %.cpp
+$(BUILD_DIR)/%: %.cpp $(BUILD_DIR)
 	$(CC) $< -o ./$@ $(FLAGS)
 
 clean:
