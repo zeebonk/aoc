@@ -1,0 +1,12 @@
+language: cpp
+script:
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+  - cd 2017; ./tests.sh
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-5
+      - g++-5
+
