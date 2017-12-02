@@ -7,14 +7,11 @@ TARGETS = $(addprefix $(BUILD_DIR)/, $(basename $(wildcard *.cpp)))
 
 all: $(TARGETS)
 
+$(BUILD_DIR)/%: %.cpp | $(BUILD_DIR)
+	$(CC) $< -o ./$@ $(FLAGS)
+
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
-
-run_%: $(BUILD_DIR)/%
-	./$(BUILD_DIR)/$* < input/$*.txt
-
-$(BUILD_DIR)/%: %.cpp $(BUILD_DIR)
-	$(CC) $< -o ./$@ $(FLAGS)
 
 clean:
 	rm -rf $(BUILD_DIR)

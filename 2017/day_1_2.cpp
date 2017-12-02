@@ -30,6 +30,7 @@ What is the solution to your new captcha?
 int main() {
     istreambuf_iterator<char> begin(cin), end;
     const string input(begin, end);
+
     const auto step_size = input.size() / 2;
 
     int sum = 0;
