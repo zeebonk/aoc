@@ -1,0 +1,10 @@
+[package]
+name = "aoc2016"
+version = "0.1.0"
+authors = ["Gijs van der Voort <vandervoort.gijs@gmail.com>"]
+
+[dependencies]
+regex = "0.1"
+itertools = "0.5.4"
+rust-crypto = "0.2.36"
+lazy_static = "0.1.*"
