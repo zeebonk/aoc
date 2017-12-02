@@ -1,4 +1,12 @@
 language: cpp
 script:
-   cd 2017; ./tests.sh
+  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
+  - cd 2017; ./tests.sh
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-5
+      - g++-5
 
