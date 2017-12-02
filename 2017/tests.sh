@@ -1,13 +1,35 @@
 #!/bin/bash
 
 function file_test {
-    make build/$1 > /dev/null
-    build/$1 < input/$2 | grep "$3" > /dev/null && echo -e "$1($2) == $3: \e[32mOK\e[39m" || echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+    OUTPUT=$(make build/$1)
+    if [ $? -ne 0 ]; then
+        echo $OUTPUT
+        exit 1
+    fi
+    OUTPUT=$(build/$1 < input/$2)
+    if  echo $OUTPUT | grep "$3" > /dev/null; then
+        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+    else
+        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+        echo $OUTPUT
+        exit 1
+    fi
 }
 
 function data_test {
-    make build/$1 > /dev/null
-    echo -n "$2" | build/$1 | grep "$3" > /dev/null && echo -e "$1($2) == $3: \e[32mOK\e[39m" || echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+    OUTPUT=$(make build/$1)
+    if [ $? -ne 0 ]; then
+        echo $OUTPUT
+        exit 1
+    fi
+    OUTPUT=$(echo -n "$2" | build/$1)
+    if  echo $OUTPUT | grep "$3" > /dev/null; then
+        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+    else
+        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+        echo $OUTPUT
+        exit 1
+    fi
 }
 
 data_test day_1_1 1122 3
