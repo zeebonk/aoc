@@ -1,4 +1,4 @@
-install: true
+language: cpp
 script:
    cd 2017; ./tests.sh
 
