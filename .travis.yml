@@ -1,4 +1,4 @@
 install: true
 script:
-    ./2017/tests.sh
+   cd 2017; ./tests.sh
 
