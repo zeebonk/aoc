@@ -1,6 +1,6 @@
 language: cpp
 script:
-  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-55555 90
   - cd 2017; ./tests.sh
 addons:
   apt:
