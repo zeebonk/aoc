@@ -1,6 +1,6 @@
 language: cpp
 script:
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-55555 90
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
   - cd 2017; ./tests.sh
 addons:
   apt:
