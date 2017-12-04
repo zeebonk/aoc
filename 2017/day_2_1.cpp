@@ -33,20 +33,20 @@ What is the checksum for the spreadsheet in your puzzle input?
 
 int main() {
     int sum = 0;
-    int min = 10000;
-    int max = 0;
-    int cur = 0;
 
     string line;
     while (getline(cin, line)) {
         stringstream line_stream(line);
 
-        while (line_stream >> cur) {
-            max = std::max(cur, max);
-            min = std::min(cur, min);
+        int value = 0;
+        int minimum = 10000;
+        int maximum = 0;
+        while (line_stream >> value) {
+            maximum = std::max(value, maximum);
+            minimum = std::min(value, minimum);
         }
 
-        sum += (max - min);
+        sum += (maximum - minimum);
     }
 
     cout << sum << endl;
