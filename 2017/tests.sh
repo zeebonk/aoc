@@ -49,3 +49,6 @@ file_test day_1_2 day_1.txt 1060
 
 data_test day_2_1 "5 1 9 5\\n7 5 3\\n2 4 6 8" 18
 file_test day_2_1 day_2.txt 41887
+
+data_test day_2_2 "5 9 2 8\\n9 4 7 3\\n3 8 6 5" 9
+file_test day_2_2 day_2.txt 226
