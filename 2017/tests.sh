@@ -3,15 +3,16 @@
 function file_test {
     OUTPUT=$(make build/$1)
     if [ $? -ne 0 ]; then
-        echo $OUTPUT
+        echo -e "$OUTPUT"
         exit 1
     fi
+
     OUTPUT=$(build/$1 < input/$2)
-    if  echo $OUTPUT | grep "$3" > /dev/null; then
-        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+    if  [[ $OUTPUT == "$3" ]]; then
+        printf "%s(%s) == %s: \e[32m%s\e[39m\n" "$1" "$2" "$3" "OK"
     else
-        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
-        echo $OUTPUT
+        printf "%s(%s) == %s: \e[31m%s\e[39m\n" "$1" "$2" "$3" "FAIL"
+        echo -e "$OUTPUT"
         exit 1
     fi
 }
@@ -19,15 +20,16 @@ function file_test {
 function data_test {
     OUTPUT=$(make build/$1)
     if [ $? -ne 0 ]; then
-        echo $OUTPUT
+        echo -e "$OUTPUT"
         exit 1
     fi
-    OUTPUT=$(echo -n "$2" | build/$1)
-    if  echo $OUTPUT | grep "$3" > /dev/null; then
-        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+
+    OUTPUT=$(echo -en "$2" | build/$1)
+    if  [[ $OUTPUT == "$3" ]]; then
+        printf "%s(%s) == %s: \e[32m%s\e[39m\n" "$1" "$2" "$3" "OK"
     else
-        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
-        echo $OUTPUT
+        printf "%s(%s) == %s: \e[31m%s\e[39m\n" "$1" "$2" "$3" "FAIL"
+        echo -e "$OUTPUT"
         exit 1
     fi
 }
