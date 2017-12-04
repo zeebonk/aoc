@@ -13,6 +13,15 @@ function file_test {
     else
         printf "%s(%s) == %s: \e[31m%s\e[39m\n" "$1" "$2" "$3" "FAIL"
         echo -e "$OUTPUT"
+        echo $OUTPUT
+        exit 1
+    fi
+    OUTPUT=$(build/$1 < input/$2)
+    if  echo $OUTPUT | grep "$3" > /dev/null; then
+        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+    else
+        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+        echo $OUTPUT
         exit 1
     fi
 }
@@ -30,6 +39,15 @@ function data_test {
     else
         printf "%s(%s) == %s: \e[31m%s\e[39m\n" "$1" "$2" "$3" "FAIL"
         echo -e "$OUTPUT"
+        echo $OUTPUT
+        exit 1
+    fi
+    OUTPUT=$(echo -n "$2" | build/$1)
+    if  echo $OUTPUT | grep "$3" > /dev/null; then
+        echo -e "$1($2) == $3: \e[32mOK\e[39m"
+    else
+        echo -e "$1($2) == $3: \e[31mFAIL\e[39m"
+        echo $OUTPUT
         exit 1
     fi
 }
