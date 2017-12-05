@@ -52,3 +52,10 @@ file_test day_2_1 day_2.txt 41887
 
 data_test day_2_2 "5 9 2 8\\n9 4 7 3\\n3 8 6 5" 9
 file_test day_2_2 day_2.txt 226
+
+data_test day_3_1 1 0
+data_test day_3_1 12 3
+data_test day_3_1 23 2
+data_test day_3_1 1024 31
+
+file_test day_3_1 day_3.txt 475
